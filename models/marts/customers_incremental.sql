@@ -14,7 +14,7 @@ customers as (
     {% if is_incremental() %}
 
     where updated_at_est > 
-        COALESCE(select max(updated_at_est) from {{ this }}, '1900-01-01')
+        COALESCE((select max(updated_at_est) from {{ this }}), '1900-01-01')
     {% endif %}
 
 ),
