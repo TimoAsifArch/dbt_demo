@@ -21,7 +21,7 @@ orders as (
 
     where created_at_est >= 
 
-    (COALESCE(select max(created_at_est) from {{ this }}, '1900-01-01'))
+    COALESCE((select max(created_at_est) from {{ this }}), '1900-01-01')
     {% endif %}
 
 ),
